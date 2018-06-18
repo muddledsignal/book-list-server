@@ -1,0 +1,31 @@
+{
+  "name": "book-list-server",
+  "version": "0.1.0",
+  "description": "Book app project for seattle-301d35 Week 3 in June 2018",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tara-chris-book-app/book-list-server.git"
+  },
+  "keywords": [
+    "tara",
+    "chris",
+    "books",
+    "express"
+  ],
+  "author": "Tara Johnson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tara-chris-book-app/book-list-server/issues"
+  },
+  "homepage": "https://github.com/tara-chris-book-app/book-list-server#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "pg": "^7.4.3"
+  }
+}
