@@ -10,14 +10,20 @@ const app = express();
 const PORT = process.env.PORT;
 
 // Database Setup
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect();
+client.on('error', err => console.error(err));
 
 // Application Middleware
 app.use(cors());
 
 // API Endpoints
-app.get('/api/v1/test', (req,res) => {
+app.get('/api/v1/books', (req, res) => {
   console.log('OMG I have done been visited by a client!!!!!');
-  res.send('OMG I am in contact with the server');
+  let SQL = 'SELECT * FROM books;';
+  client.query(SQL)
+    .then(results => res.send(results.rows))
+    .catch(console.error);
 });
 
 app.get('*', (req, res) => res.status(404).send('This route does not exist'));
