@@ -20,12 +20,11 @@ app.use(cors());
 // API Endpoints
 app.get('/api/v1/books/:id', (req, res) => {
   console.log('You want just ONE book!'); 
-  let SQL = `
-    SELECT * FROM books
-    WHERE book_id = ${1};`
-  let values = [req.params.id]; 
-  client.query(SQL, values)
-    .then(results => res.send(results.row))
+  // res.send('Here is your 1 book!'); 
+  let SQL = `SELECT * FROM books 
+              WHERE book_id = ${req.params.id};`;
+  client.query(SQL)
+    .then(results => res.send(results.rows))
     .catch(console.error); 
 }); 
 
