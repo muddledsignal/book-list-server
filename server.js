@@ -18,6 +18,16 @@ client.on('error', err => console.error(err));
 app.use(cors());
 
 // API Endpoints
+app.get('/api/v1/books/:id', (req, res) => {
+  console.log('You want just ONE book!'); 
+  // res.send('Here is your 1 book!'); 
+  let SQL = `SELECT * FROM books 
+              WHERE book_id = ${req.params.id};`;
+  client.query(SQL)
+    .then(results => res.send(results.rows))
+    .catch(console.error); 
+}); 
+
 app.get('/api/v1/books', (req, res) => {
   console.log('OMG I have done been visited by a client!!!!!');
   let SQL = 'SELECT * FROM books;';
@@ -25,6 +35,15 @@ app.get('/api/v1/books', (req, res) => {
     .then(results => res.send(results.rows))
     .catch(console.error);
 });
+
+
+// app.delete('/articles/:id', (request, response) => {
+//   console.log('You burn books now?'); 
+//   let SQL = `DELETE FROM art'icles WHERE article_id=$1;`;
+//   let values = [request.params.id];
+
+//   client.query(SQL, values)
+//     .then(() => {
 
 app.get('*', (req, res) => res.status(404).send('This route does not exist'));
 
